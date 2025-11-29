@@ -4904,9 +4904,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/sharko/projetos-pessoais/c#/projeto-dev-trail/projetos/prjeto-final-dev-trail/solutis-dev-trail-projeto-final/projeto7-api.csproj",
-      "projectName": "projeto7-api",
-      "projectPath": "/home/sharko/projetos-pessoais/c#/projeto-dev-trail/projetos/prjeto-final-dev-trail/solutis-dev-trail-projeto-final/projeto7-api.csproj",
+      "projectUniqueName": "/home/sharko/projetos-pessoais/c#/projeto-dev-trail/projetos/prjeto-final-dev-trail/solutis-dev-trail-projeto-final/BankSystem.csproj",
+      "projectName": "BankSystem",
+      "projectPath": "/home/sharko/projetos-pessoais/c#/projeto-dev-trail/projetos/prjeto-final-dev-trail/solutis-dev-trail-projeto-final/BankSystem.csproj",
       "packagesPath": "/home/sharko/.nuget/packages/",
       "outputPath": "/home/sharko/projetos-pessoais/c#/projeto-dev-trail/projetos/prjeto-final-dev-trail/solutis-dev-trail-projeto-final/obj/",
       "projectStyle": "PackageReference",

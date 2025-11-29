@@ -4,12 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using BankSystem.API.Services;
+using SeuProjeto.Extensions;
+using BankSystem.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-//builder.Services.AddOpenApi();
-// ...
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -62,11 +61,12 @@ builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddAuthorization();
 
 
-//var accountInMemoryRepo = new List<Conta>();
-//builder.Services.AddSingleton(accountInMemoryRepo);
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+app.ApplyDatabaseMigrations();
+
+
 if (app.Environment.IsDevelopment())
 {
     // app.MapOpenApi();
@@ -76,7 +76,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+
+app.UseCustomExceptionHandler();
 
 var summaries = new[]
 {
@@ -101,26 +102,6 @@ app.MapControllers();
 app.MapGet("/health", async (BankContext context) =>
 {
 
-    // try
-    // {
-    //     // Verifica se o banco de dados pode ser acessado
-    //     var canConnect = await context.Database.CanConnectAsync();
-    //     if (canConnect)
-    //     {
-
-    //         Console.WriteLine("Banco de dados acessível");
-
-    //         return Results.Ok("Healthy");
-    //     }
-    //     else
-    //     {
-    //         return Results.StatusCode(503); // Serviço Indisponível
-    //     }
-    // }
-    // catch (Exception ex)
-    // {
-    //     return Results.Problem($"Erro ao conectar ao banco de dados.  {ex.Message}");
-    // }
 
     try
     {

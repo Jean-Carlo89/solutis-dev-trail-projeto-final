@@ -53,7 +53,7 @@ public class ClientController : ControllerBase
 
     }
 
-    [HttpGet("/id/{id}")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<ClientOutputDto>> GetClient(int id)
     {
 
@@ -63,7 +63,7 @@ public class ClientController : ControllerBase
         return Ok(clientDSto);
     }
 
-    [HttpGet("/cpf/{cpf}")]
+    [HttpGet("cpf/{cpf}")]
     public async Task<ActionResult<ClientOutputDto>> GetClientByCpf(string cpf)
     {
 

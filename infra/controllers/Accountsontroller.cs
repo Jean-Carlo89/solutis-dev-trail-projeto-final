@@ -70,13 +70,15 @@ namespace projeto7_api.Controllers
         [HttpGet("{accountNumber}")]
         public async Task<IActionResult> GetAccountByNumber(int accountNumber)
         {
+
+
             var account = await this._accountService.GetAccountByNumberAsync(accountNumber);
 
 
-            if (account == null)
-            {
-                return NotFound($"Conta com o número {accountNumber} não encontrada.");
-            }
+            // if (account == null)
+            // {
+            //     return NotFound($"Conta com o número {accountNumber} não encontrada.");
+            // }
 
 
             return Ok(account);
@@ -150,10 +152,10 @@ namespace projeto7_api.Controllers
 
             var accountExists = await this._accountService.checkIfAccountExistsByNumberAsync(numero);
 
-            if (accountExists == false)
-            {
-                return NotFound($"Conta com o número {numero} não encontrada.");
-            }
+            // if (accountExists == false)
+            // {
+            //     return NotFound($"Conta com o número {numero} não encontrada.");
+            // }
 
             await this._accountService.depositInAccountAsync(numero, depositeDto.Valor);
 

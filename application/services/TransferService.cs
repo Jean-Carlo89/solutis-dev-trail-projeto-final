@@ -1,15 +1,10 @@
 using System.Threading.Tasks;
 using BankSystem.API.Repositories;
 using BankSystem.API.model;
-using BankSystem.Domain.Entities; // Para acessar a entidade de domínio BankAccount
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic; // Para KeyNotFoundException
+
 
 namespace BankSystem.API.Services
 {
-    // O IAccountService existente poderia ser substituído por IAccountRepository,
-    // mas vamos manter o IAccountRepository e ITransactionRepository.
     public class TransferService : ITransferService
     {
         private readonly BankContext _context;
@@ -17,10 +12,13 @@ namespace BankSystem.API.Services
         private readonly ITransactionRepository _transactionRepository;
         private const decimal TransferFeeRate = 0.005m;
 
+
+
         public TransferService(
             BankContext context,
             IAccountRepository accountRepository,
-            ITransactionRepository transactionRepository)
+            ITransactionRepository transactionRepository
+            )
         {
             _context = context;
             _accountRepository = accountRepository;
@@ -51,6 +49,7 @@ namespace BankSystem.API.Services
                 {
                     throw new KeyNotFoundException($"Conta de destino com número {destinationAccountNumber} não encontrada.");
                 }
+
 
 
 

@@ -29,7 +29,7 @@ public class AccountService : IAccountService
         }
         else
         {
-            throw new ArgumentException("Tipo de conta inválido.");
+            throw new DevError(System.Net.HttpStatusCode.BadRequest, "Tipo de conta inválido.");
         }
     }
 
@@ -55,7 +55,7 @@ public class AccountService : IAccountService
         BankAccountModel account = await this.accountRepository.GetAccountByNumberAsync(accountNumber);
         if (account == null)
         {
-            return false;
+            throw new DevError(System.Net.HttpStatusCode.NotFound, $"Conta com o número {accountNumber} não encontrada.");
         }
 
         return true;
@@ -84,7 +84,7 @@ public class AccountService : IAccountService
 
         if (accountModel == null)
         {
-            return null;
+            throw new DevError(System.Net.HttpStatusCode.NotFound, $"Conta com o número {accountNumber} não encontrada.");
 
         }
         BankAccount accountEntity = BankAccountModelMapper.ToEntity(accountModel);

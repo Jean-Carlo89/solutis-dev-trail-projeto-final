@@ -37,22 +37,22 @@ public static class ClientModelMapper
             return null;
         }
 
-
         var entity = new Client(
-            Id: model.Id,
-            Name: model.Name,
-            Email: model.Email,
-            DateOfBirth: model.DateOfBirth
+                 id: model.Id,
+                 name: model.Name,
+                 cpf: model.Cpf,
+                 email: model.Email,
+                 dateOfBirth: model.DateOfBirth,
+                 accounts: model.Accounts?
+                                    .Select(account => BankAccountModelMapper.ToEntity(account))
+                                    .ToList()
+
+
 
 
 
         );
 
-
-        // entity.Accounts = model.Accounts.ForEach(account => { BankAccountModelMapper.ToEntity(account); });
-        entity.Accounts = model.Accounts?
-                               .Select(account => BankAccountModelMapper.ToEntity(account))
-                               .ToList();
 
         return entity;
     }
@@ -68,6 +68,7 @@ public static class ClientModelMapper
         return new ClientOutputDto
         {
             Id = entity.Id,
+            cpf = entity.Cpf,
             Nome = entity.Name,
             Email = entity.Email,
             DOB = entity.DateOfBirth,

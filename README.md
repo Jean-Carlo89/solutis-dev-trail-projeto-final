@@ -22,6 +22,8 @@ Existem duas formas principais de colocar o projeto em execução na sua máquin
 
 ---
 
+### Nos dois métodos é importante que o banco sql server esteja zerado para não gerar problemas quando o código rodar as migrações para criar as tabelas
+
 ### Método 1: Orquestração com Docker Compose 
 
 Esta abordagem é a mais simples, pois irá subir tanto a aplicação quanto o SQL SERVER

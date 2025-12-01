@@ -152,6 +152,7 @@ public static class BankAccountModelMapper
         return new AccountOutputDto
         {
 
+            Id = entity.Id,
             Numero = entity.Number,
             Saldo = entity.Balance,
             Titular = entity.Holder,
@@ -182,10 +183,12 @@ public static class BankAccountModelMapper
             return null;
         }
 
-        return new AccountOutputWithTransactionsDto
+        var dto = new AccountOutputWithTransactionsDto
         {
             DetalhesDaConta = ToOutputDto(entity),
             Transacoes = TransactionMapper.ToOutputDtoList(entity.Transactions?.ToList())
         };
+
+        return dto;
     }
 }

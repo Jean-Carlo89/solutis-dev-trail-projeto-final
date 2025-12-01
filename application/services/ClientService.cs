@@ -92,13 +92,18 @@ public class ClientService : IClientService
             throw new ArgumentException(combinedError);
         }
 
-
-
         Client newClient = new Client(client.Nome, client.email, client.Cpf, null);
+
         ClientModel newClientModel = ClientModelMapper.ToModel(newClient);
-        var clientDto = ClientModelMapper.ToOutputDto(newClient);
+
         await this.repository.AddNewClientAsync(newClientModel);
+
         await this.repository.SaveDatabaseChangesAsync();
+
+        newClient.Id = newClientModel.Id;
+
+        var clientDto = ClientModelMapper.ToOutputDto(newClient);
+
         return clientDto;
     }
 

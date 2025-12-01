@@ -7,6 +7,8 @@ namespace BankSystem.API.Dtos
 
         public int Id { get; set; }
 
+        public string cpf { get; set; }
+
 
         public string Nome { get; set; }
 

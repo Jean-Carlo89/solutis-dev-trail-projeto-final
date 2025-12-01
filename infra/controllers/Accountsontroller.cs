@@ -134,9 +134,9 @@ namespace projeto7_api.Controllers
                 return NotFound($"Cliente com Id {AccountDto.ClientId} não encontrado.");
             }
 
-            await this._accountService.AddNewAccountAsync(AccountDto);
+            var accountDto = await this._accountService.AddNewAccountAsync(AccountDto);
 
-            return Ok();
+            return Ok(accountDto);
         }
 
 
@@ -159,7 +159,7 @@ namespace projeto7_api.Controllers
 
             await this._accountService.depositInAccountAsync(numero, depositeDto.Valor);
 
-            return Ok();
+            return Ok("Depósito realizado com sucesso.");
         }
 
         [HttpPut("{numero}/withdraw")]
@@ -176,7 +176,7 @@ namespace projeto7_api.Controllers
 
             await this._accountService.withdrawFromAccountAsync(numero, withdrawDto.Valor);
 
-            return Ok();
+            return Ok("Saque realizado com sucesso.");
         }
 
         [HttpDelete("{numero}")]
@@ -191,7 +191,7 @@ namespace projeto7_api.Controllers
 
             await this._accountService.deleteAccountAsync(numero);
 
-            return NoContent();
+            return Ok("Conta deletada com sucesso.");
         }
 
 
@@ -199,7 +199,7 @@ namespace projeto7_api.Controllers
         public async Task<IActionResult> Transfer([FromBody] TransferInputDto transferDto)
         {
 
-            Console.WriteLine("Entrou no controller de transferência");
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

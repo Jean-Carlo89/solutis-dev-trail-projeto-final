@@ -7,9 +7,9 @@ public interface IAccountService
 
     Task<AccountOutputWithTransactionsDto> GetAccountWithTransactionsByNumberAsync(int accountNumber);
 
-    Task AddNewAccountAsync(AccountInputDto account);
+    Task<AccountOutputDto> AddNewAccountAsync(AccountInputDto account);
 
-    Task<List<BankAccount>> GetAllAccountsAsync();
+    Task<List<AccountOutputDto>> GetAllAccountsAsync();
 
     Task<bool> checkIfClientExistsByIdAsync(int clientId);
 

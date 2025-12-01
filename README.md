@@ -1,6 +1,10 @@
 # 🏦 BankSim - Projeto Final Solutis-Dev-Trail
-
+<p align="center">
+<img src="./SP-Studio.png" width="200" height="150" alt="Logo do Projeto" />
+</p>
 > **AVISO:** Este projeto foi desenvolvido utilizando **.NET 9**.
+
+
 
 ## 1. 🚀 Sobre o Projeto
 

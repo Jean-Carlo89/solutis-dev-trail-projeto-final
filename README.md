@@ -6,6 +6,9 @@
 
 Este é o projeto final do processo **Solutis-Dev-Trail**. O objetivo principal foi desenvolver uma aplicação de simulação bancária trabalhada durante as aulas
 
+* A construção e acompanhamento do projeto durante as aulas foi feita no repositório : https://github.com/Jean-Carlo89/c-learning
+   Nele estão todo os mini-projetos, referencia de commits do projeto final, testes e tudo que foi aprendido durante o curso.
+
 ## 2. 🔗 Acesso ao Swagger (GCP)
 
 Você pode interagir com a aplicação que está rodando na Google Cloud Platform através do Swagger. O link será disponibilizado aqui:

@@ -27,5 +27,13 @@ services:
       
       - sqlserver_data:/var/opt/mssql
 
+    
+    healthcheck:
+     
+      test: ["CMD", "/opt/mssql/bin/sqlservr", "status"]
+      interval: 10s   
+      timeout: 5s    
+      retries: 5    
+
 volumes:
   sqlserver_data:

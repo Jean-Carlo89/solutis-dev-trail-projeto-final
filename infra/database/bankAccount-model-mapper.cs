@@ -183,10 +183,12 @@ public static class BankAccountModelMapper
             return null;
         }
 
-        return new AccountOutputWithTransactionsDto
+        var dto = new AccountOutputWithTransactionsDto
         {
             DetalhesDaConta = ToOutputDto(entity),
             Transacoes = TransactionMapper.ToOutputDtoList(entity.Transactions?.ToList())
         };
+
+        return dto;
     }
 }

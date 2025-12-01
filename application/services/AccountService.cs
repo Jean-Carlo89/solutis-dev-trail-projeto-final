@@ -33,7 +33,7 @@ public class AccountService : IAccountService
         }
     }
 
-    public async Task AddNewAccountAsync(AccountInputDto accountDto)
+    public async Task<AccountOutputDto> AddNewAccountAsync(AccountInputDto accountDto)
     {
 
         Random random = new Random();
@@ -48,6 +48,10 @@ public class AccountService : IAccountService
 
         await this.accountRepository.AddNewAccountAsync(accountModel);
         await this.accountRepository.SaveDatabaseChangesAsync();
+
+        var dto = BankAccountModelMapper.ToOutputDto(newAccount);
+
+        return dto;
     }
 
     public async Task<bool> checkIfAccountExistsByNumberAsync(int accountNumber)
@@ -153,7 +157,7 @@ public class AccountService : IAccountService
     public async Task deleteAccountAsync(int accountNumber)
     {
 
-        //*****  Atualizar métodod de delete para fazer direto pelo Id da conta
+
 
 
         BankAccountModel account = await this.accountRepository.GetAccountByNumberAsync(accountNumber);
@@ -163,11 +167,13 @@ public class AccountService : IAccountService
 
     }
 
-    public async Task<List<BankAccount>> GetAllAccountsAsync()
+    public async Task<List<AccountOutputDto>> GetAllAccountsAsync()
     {
         List<BankAccountModel> accounts = await this.accountRepository.GetAllAccountsAsync();
 
-        return BankAccountModelMapper.ToEntityList(accounts);
+        var accountsEntities = BankAccountModelMapper.ToEntityList(accounts);
+
+        return BankAccountModelMapper.ToOutputDto(accountsEntities);
     }
 
     public async Task<AccountOutputWithTransactionsDto> GetAccountWithTransactionsByNumberAsync(int accountNumber)

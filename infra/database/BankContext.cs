@@ -1,5 +1,6 @@
 using BankSystem.API.model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 public class BankContext : DbContext
 {
@@ -15,6 +16,11 @@ public class BankContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        var accountTypeConverter = new EnumToStringConverter<AccountType>();
+        var accountStatusConverter = new EnumToStringConverter<AccountStatus>();
+        var transactionTypeConverter = new EnumToStringConverter<TransactionType>();
+
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<BankAccountModel>()
                     .HasKey(a => a.Id);
@@ -27,9 +33,12 @@ public class BankContext : DbContext
             entity.Property(e => e.Number).IsRequired().HasMaxLength(20);
             entity.Property(e => e.Balance).IsRequired().HasColumnType("decimal(18,2)");
             entity.Property(e => e.CreatedAt).IsRequired();
-            entity.Property(e => e.Type).IsRequired();
-            entity.Property(e => e.Status).IsRequired();
-
+            entity.Property(e => e.Type).IsRequired()
+               .HasColumnType("nvarchar(50)")
+               .HasConversion(accountTypeConverter);
+            entity.Property(e => e.Status).IsRequired()
+               .HasColumnType("nvarchar(50)")
+              .HasConversion(accountStatusConverter);
             entity.HasOne(c => c.Client)
                   .WithMany(a => a.Accounts)
                   .HasForeignKey(c => c.ClientId)
@@ -63,7 +72,7 @@ public class BankContext : DbContext
             entity.HasIndex(c => c.Email).IsUnique();
 
 
-            entity.Property(c => c.Cpf).IsRequired().HasMaxLength(11);
+            entity.Property(c => c.Cpf).IsRequired().HasMaxLength(14);
             entity.HasIndex(c => c.Cpf).IsUnique();
 
 
@@ -81,7 +90,9 @@ public class BankContext : DbContext
                         .IsRequired();
 
                     entity.Property(t => t.Type)
-                        .IsRequired();
+                        .IsRequired()
+                    .HasColumnType("nvarchar(50)")
+                    .HasConversion(transactionTypeConverter);
 
                     entity.Property(t => t.Description)
                         .HasMaxLength(200)

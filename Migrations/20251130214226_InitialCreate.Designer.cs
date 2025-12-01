@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BankSystem_api.Migrations
 {
     [DbContext(typeof(BankContext))]
-    [Migration("20251129011655_InitialCreate")]
+    [Migration("20251130214226_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -49,11 +49,13 @@ namespace BankSystem_api.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -87,8 +89,9 @@ namespace BankSystem_api.Migrations
                     b.Property<int?>("SourceAccountId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -113,8 +116,8 @@ namespace BankSystem_api.Migrations
 
                     b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
+                        .HasMaxLength(14)
+                        .HasColumnType("nvarchar(14)");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");

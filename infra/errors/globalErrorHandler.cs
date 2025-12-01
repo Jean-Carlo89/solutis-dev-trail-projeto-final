@@ -16,11 +16,9 @@ namespace SeuProjeto.Extensions
 
                  var exception = exceptionHandlerPathFeature?.Error;
 
-
-                 HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
+                 string errorMessage = null;
                  string errorTitle = "Erro Interno do Servidor";
-                 string errorMessage = "Ocorreu um erro inesperado.";
-
+                 HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
 
                  if (exception is DevError devError)
                  {
@@ -32,18 +30,36 @@ namespace SeuProjeto.Extensions
                  else
                  {
 
-                     errorMessage = exception?.Message;
+                     errorMessage = null;
                  }
 
                  context.Response.StatusCode = (int)statusCode;
                  context.Response.ContentType = "application/json";
 
-                 await context.Response.WriteAsJsonAsync(new
-                 {
-                     title = errorTitle,
-                     status = (int)statusCode,
 
-                 });
+                 object responseBody;
+
+                 if (errorMessage != null)
+                 {
+
+                     responseBody = new
+                     {
+                         title = errorTitle,
+                         status = (int)statusCode,
+                         message = errorMessage
+                     };
+                 }
+                 else
+                 {
+
+                     responseBody = new
+                     {
+                         title = errorTitle,
+                         status = (int)statusCode
+                     };
+                 }
+
+                 await context.Response.WriteAsJsonAsync(responseBody);
              });
             });
         }

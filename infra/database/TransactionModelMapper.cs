@@ -77,7 +77,7 @@ namespace BankSystem.API.Mappers
             }
 
 
-            return new TransactionOutputDto
+            var dto = new TransactionOutputDto
             {
                 TipoDeTransacao = model.Type,
                 Valor = model.Amount,
@@ -87,8 +87,13 @@ namespace BankSystem.API.Mappers
 
                 IdContaOriginaria = (int)model.SourceAccountId,
 
-                IdContaDestino = (int)model.DestinationAccountId
+                IdContaDestino = model.Type == TransactionType.Fee
+                         ? 1111111111
+                         : (int)model.DestinationAccountId
+                //*** Códgio forćado por motivo de teste. No sistema oficial a conta  oficial do Banco seria criada antes de quaakuer outra e seria o destin para transações de taxa.
             };
+
+            return dto;
         }
 
         public static List<TransactionOutputDto> ToOutputDtoList(List<Transaction> entities)

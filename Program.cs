@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using BankSystem.API.Services;
 using SeuProjeto.Extensions;
 using BankSystem.Extensions;
+using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -60,10 +61,17 @@ builder.Services.AddScoped<IClientService, ClientService>();
 
 builder.Services.AddAuthorization();
 
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
+
 
 
 var app = builder.Build();
-
+app.UseCustomExceptionHandler();
 app.ApplyDatabaseMigrations();
 
 
@@ -77,26 +85,14 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.UseCustomExceptionHandler();
+
 
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+
 app.MapControllers();
 
 app.MapGet("/health", async (BankContext context) =>

@@ -19,7 +19,7 @@ namespace BankSystem_api.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Cpf = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    Cpf = table.Column<string>(type: "nvarchar(14)", maxLength: 14, nullable: false),
                     DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -37,8 +37,8 @@ namespace BankSystem_api.Migrations
                     Holder = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Balance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -59,7 +59,7 @@ namespace BankSystem_api.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     SourceAccountId = table.Column<int>(type: "int", nullable: true),

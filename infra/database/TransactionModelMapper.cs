@@ -90,7 +90,7 @@ namespace BankSystem.API.Mappers
                 IdContaDestino = model.Type == TransactionType.Fee
                          ? 1111111111
                          : (int)model.DestinationAccountId
-                //*** Códgio forćado por motivo de teste. No sistema oficial a conta  oficial do Banco seria criada antes de quaakuer outra e seria o destin para transações de taxa.
+                //*** Códgio forćado por motivo de teste. No sistema oficial a conta  oficial do Banco seria criada antes de qualquer outra e seria o destin para transações de taxa.
             };
 
             return dto;

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Gn9vwnuBgU4=",
+  "dgSpecHash": "RI7g0gtoJio=",
   "success": true,
-  "projectFilePath": "/home/sharko/projetos-pessoais/c#/projeto-dev-trail/projetos/prjeto-final-dev-trail/solutis-dev-trail-projeto-final/BankSystem.csproj",
+  "projectFilePath": "/home/sharko/projetos-pessoais/c#/dev-test/solutis-dev-trail-projeto-final/BankSystem.csproj",
   "expectedPackageFiles": [
     "/home/sharko/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/home/sharko/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",

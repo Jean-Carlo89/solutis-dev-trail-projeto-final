@@ -193,22 +193,7 @@ public class AccountService : IAccountService
         return accountDto;
     }
 
-    // public async Task TransferBetweenAccountsAsync(int sourceAccountNumber, int destinationAccountNumber, decimal amount)
-    // {
-    //     BankAccountModel sourceAccountModel = await this.repository.GetAccountByNumberAsync(sourceAccountNumber);
-    //     BankAccountModel destinationAccountModel = await this.repository.GetAccountByNumberAsync(destinationAccountNumber);
 
-    //     BankAccount sourceAccountEntity = BankAccountModelMapper.ToEntity(sourceAccountModel);
-    //     BankAccount destinationAccountEntity = BankAccountModelMapper.ToEntity(destinationAccountModel);
-
-    //     sourceAccountEntity.Withdraw(amount);
-    //     destinationAccountEntity.Deposit(amount);
-
-    //     sourceAccountModel.Balance = sourceAccountEntity.Balance;
-    //     destinationAccountModel.Balance = destinationAccountEntity.Balance;
-
-    //     await this.repository.SaveDatabaseChangesAsync();
-    // }
 
 
 }

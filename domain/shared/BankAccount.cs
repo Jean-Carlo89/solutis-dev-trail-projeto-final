@@ -85,7 +85,7 @@ public class BankAccount
         Balance += amount;
     }
 
-    // Método Virtual: Saque (Pode ser sobrescrito por classes derivadas)
+
     public virtual void Withdraw(decimal amount)
     {
         if (Status != AccountStatus.Active || amount <= 0)
